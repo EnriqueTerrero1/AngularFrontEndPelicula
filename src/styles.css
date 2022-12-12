@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+
+h2,a,p{
+    font-family:sans-serif;
+}
+
+.tabla-indice{
+
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.tabla-indice a {
+
+    margin-right: 1rem;
+}

@@ -1,0 +1,35 @@
+<app-listado-generico [listado]="peliculas">
+
+    
+
+    <ng-container contenido>
+        <div class="peliculas-contenedor">
+            <div *ngFor="let pelicula of peliculas; let index = index" class="pelicula-contenedor">
+            <a [routerLink]="'/pelicula/'+pelicula.id">
+                <img   [src]="pelicula.poster" alt="Poster"/>
+            </a>
+            <p>
+                <a [routerLink]="'/pelicula/'+pelicula.id">{{pelicula.titulo}}</a>
+            </p>
+            <div>
+                <a mat-flat-button color="primary" [routerLink]="'/peliculas/editar/' + pelicula.id">
+                    Editar
+                </a>
+                <button mat-flat-button color="warn" type="button" >Borrar</button>
+            </div>
+       
+            <!--<div>
+                <h2> Pelicula{{index}} : {{pelicula.titulo|uppercase}}
+                    <button (click)="remover(index)" style="margin-left: 1rem;">Remover</button>
+                </h2>
+            </div>
+            <div>
+                {{pelicula.fechaLanzamiento|date:'dd-MMMM-YYYY'|uppercase}}
+            </div>
+            <div>
+                {{pelicula.precio |currency:'USD'}}
+            </div>-->
+        </div>
+        </div>  
+    </ng-container>
+</app-listado-generico>

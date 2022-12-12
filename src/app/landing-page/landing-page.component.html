@@ -1,0 +1,6 @@
+<app-rating (rated)="manejarRated($event)"></app-rating>
+<h2>En Cines</h2>
+<app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
+
+<h2>Futuros estrenos</h2>
+<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
