@@ -1,0 +1,29 @@
+{
+  "name": "browser-module",
+  "version": "0.0.1",
+  "description": "node 'module' module polyfill for the Browser - only provides _compile",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brandonhorst/browser-module.git"
+  },
+  "keywords": [
+    "module",
+    "browser",
+    "browserify",
+    "compile",
+    "_compile",
+    "load",
+    "require"
+  ],
+  "author": "@brandonhorst",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brandonhorst/browser-module/issues"
+  },
+  "homepage": "https://github.com/brandonhorst/browser-module#readme",
+  "dependencies": {}
+}
