@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
 import{MatIconModule} from '@angular/material/icon';
-import{MatButtonModule} from '@angular/material/button';
+import{MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 import { RatingComponent } from './utilidades/rating/rating.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';

@@ -6,7 +6,7 @@ import { generoDTO } from 'src/app/generos/genero';
 import { GenerosService } from 'src/app/generos/generos.service';
 import { PeliculasService } from '../peliculas.service';
 import { PeliculaDTO } from '../pelicula';
-import { PageEvent } from '@angular/material/paginator';
+import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatTable } from '@angular/material/table';
+import { MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from '@angular/material/legacy-autocomplete';
+import { MatLegacyTable as MatTable } from '@angular/material/legacy-table';
 import { actorPeliculaDTO } from '../actor';
 import { ActoresService } from '../actores.service';
 

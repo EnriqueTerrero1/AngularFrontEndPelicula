@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { MatTable } from '@angular/material/table';
+import { LegacyPageEvent as PageEvent } from '@angular/material/legacy-paginator';
+import { MatLegacyTable as MatTable } from '@angular/material/legacy-table';
 import { generoDTO } from '../genero';
 import { GenerosService } from '../generos.service';
 
