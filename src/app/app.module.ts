@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { AppComponent } from './app.component';
 import { ListadoPeliculasComponent } from './peliculas/listado-peliculas/listado-peliculas.component';
 import { ListadoGenericoComponent } from './utilidades/listado-generico/listado-generico.component';
@@ -40,6 +40,12 @@ import { AutocompleteActoresComponent } from './actores/autocomplete-actores/aut
 import { MostrarErroresComponent } from './utilidades/mostrar-errores/mostrar-errores.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-pelicula.component';
+import { AutorizadoComponent } from './seguridad/autorizado/autorizado.component';
+import { LoginComponent } from './seguridad/login/login.component';
+import { RegistroComponent } from './seguridad/registro/registro.component';
+import { FormularioAutenticacionComponent } from './seguridad/formulario-autenticacion/formulario-autenticacion.component';
+import { SeguridadInterceptorService } from './seguridad/seguridad-interceptor.service';
+import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usuarios.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +77,11 @@ import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-p
     AutocompleteActoresComponent,
     MostrarErroresComponent,
     DetallePeliculaComponent,
+    AutorizadoComponent,
+    LoginComponent,
+    RegistroComponent,
+    FormularioAutenticacionComponent,
+    IndiceUsuariosComponent,
 
     
   ],
@@ -91,7 +102,11 @@ import { DetallePeliculaComponent } from './peliculas/detalle-pelicula/detalle-p
     
     
   ],
-  providers: [],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:SeguridadInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,28 @@
-<app-rating (rated)="manejarRated($event)"></app-rating>
-<h2>En Cines</h2>
-<app-listado-peliculas [peliculas]="peliculasEnCines"></app-listado-peliculas>
+<app-autorizado [rol]="'admin'" >
+  <ng-container autorizado>
+    estas autenticado
 
-<h2>Futuros estrenos</h2>
-<app-listado-peliculas [peliculas]="peliculasProximosEstrenos"></app-listado-peliculas>
+  </ng-container>
+</app-autorizado>
+
+<app-autorizado >
+  <ng-container noAutorizado>
+    no estas autenticado
+
+  </ng-container>
+</app-autorizado>
+
+
+
+<h2>En cines</h2>
+
+<app-listado-peliculas 
+(borrado)="borrado()"
+[peliculas]="peliculasEnCines"></app-listado-peliculas>
+
+<h2>Futuros Estrenos</h2>
+
+<app-listado-peliculas
+(borrado)="borrado()"
+  [peliculas]="peliculasProximosEstrenos"
+></app-listado-peliculas>

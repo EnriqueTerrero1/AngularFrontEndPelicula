@@ -16,6 +16,7 @@ export class PeliculasService {
   public obtenerLandingPage(): Observable<LandingPageDTO>{
     return this.http.get<LandingPageDTO>(this.apiURL);
   }
+  
 
   public obtenerPorId(id: number): Observable<PeliculaDTO>{
     return this.http.get<PeliculaDTO>(`${this.apiURL}/${id}`);
@@ -28,10 +29,14 @@ export class PeliculasService {
   public putGet(id: number): Observable<PeliculaPutGet>{
     return this.http.get<PeliculaPutGet>(`${this.apiURL}/putget/${id}`);
   }
+  public getAll():Observable<PeliculaDTO[]>{
+    return this.http.get<PeliculaDTO[]>( `${this.apiURL}/buscar`);
+  }
 
   
 
   public filtrar(valores: any): Observable<any>{
+    console.log("prueba filtrar");
     const params = new HttpParams({fromObject: valores});
     return this.http.get<PeliculaDTO[]>(`${this.apiURL}/filtrar`, 
     {params, observe: 'response'});

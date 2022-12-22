@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SeguridadService } from 'src/app/seguridad/seguridad.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-rating',
@@ -7,7 +9,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class RatingComponent implements OnInit {
 
-  constructor() { }
+  constructor( private seguridadService:SeguridadService) { }
 
 
   @Input()
@@ -40,11 +42,15 @@ export class RatingComponent implements OnInit {
   }
   rate(index:number):void{
 
+    if(this.seguridadService.estaLogueado()){
     this.ratingSeleccionado=index+1;
     this.votado=true;
     this.ratingAnterior = this.ratingSeleccionado;
 
     this.rated.emit(this.ratingSeleccionado);
+    }else{
+      Swal.fire('Debe Loguearse',"No puede realizar esta accion",'error');
+    }
   }
 
 

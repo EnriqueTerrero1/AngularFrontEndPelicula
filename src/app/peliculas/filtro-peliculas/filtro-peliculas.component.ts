@@ -38,24 +38,38 @@ export class FiltroPeliculasComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.peliculasService.obtenerLandingPage()
-    .subscribe(generos => {
-      this.generos = generos;
-      this.peliculas = 
-      this.form = this.formBuilder.group(this.formularioOriginal);
-     // this.leerValoresURL();
-     // this.buscarPeliculas(this.form.value);
   
-      this.form.valueChanges
-        .subscribe(valores => {
-          this.buscarPeliculas(valores);
-          this.escribirParametrosBusquedaEnURL();
-        })
+     this.peliculasService.getAll().subscribe(peliculas => this.peliculas=peliculas);
+     this.generosService.obtenerTodos().subscribe(generos => this.generos = generos);
+     this.form = this.formBuilder.group(this.formularioOriginal);
+     this.leerValoresURL();
+     this.buscarPeliculas(this.form.value);
 
-    })    
+     this.form.valueChanges.subscribe(valores => {this.buscarPeliculas(valores);
+    this.escribirParametrosBusquedaEnURL();
+       })
+     console.log(this.peliculas);
 
     
   }
+
+ 
+
+  // this.generosService.obtenerTodos()
+  // .subscribe(generos => {
+  //   this.generos = generos;
+
+  //   this.form = this.formBuilder.group(this.formularioOriginal);
+  //   this.leerValoresURL();
+  //   this.buscarPeliculas(this.form.value);
+
+  //   this.form.valueChanges
+  //     .subscribe(valores => {
+  //       this.buscarPeliculas(valores);
+  //       this.escribirParametrosBusquedaEnURL();
+  //     })
+
+  // })    
 
   private leerValoresURL(){
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -70,7 +84,7 @@ export class FiltroPeliculasComponent implements OnInit {
       }
 
       if (params['proximosEstrenos']){
-        objeto.proximosEstrenos =params['proximosEstrenos'];
+        objeto.proximosEstrenos = params['proximosEstrenos'];
       }
 
       if (params['enCines']){
@@ -109,12 +123,9 @@ export class FiltroPeliculasComponent implements OnInit {
   buscarPeliculas(valores: any){
   valores.pagina = this.paginaActual;
   valores.recordsPorPagina = this.cantidadElementosAMostrar;
-  
    this.peliculasService.filtrar(valores).subscribe(response => {
      this.peliculas = response.body;
-     if(this.peliculas == null){
-
-     }
+    
      this.escribirParametrosBusquedaEnURL();
      this.cantidadElementos = response.headers.get('cantidadTotalRegistros');
    })

@@ -11,7 +11,7 @@
             </mat-chip>
         </mat-chip-list>
 
-        {{fechaLanzamiento.toDateString()}} | promedio: 0.0 | tu voto: 0.0
+        {{fechaLanzamiento.toDateString()}} | promedio:{{pelicula.promedioVoto}} | tu voto:<app-rating [ratingSeleccionado]="pelicula.votoUsuario" (rated)="rated($event)" ></app-rating>
 
         <div style="display:flex ;">
             <span style="display:inline-block ; margin-right:1rem">

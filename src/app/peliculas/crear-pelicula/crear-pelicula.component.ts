@@ -37,7 +37,8 @@ export class CrearPeliculaComponent implements OnInit {
 
   guardarCambios(pelicula: PeliculaCreacionDTO){
 
-    this.peliculasService.crear(pelicula).subscribe((id:number)=>this.router.navigate(['/peliculas/'+ id]),error => this.errores = parsearErroresAPI(error));
+    this.peliculasService.crear(pelicula)
+    .subscribe((id:number)=>this.router.navigate(['/peliculas/'+ id]),error => this.errores = parsearErroresAPI(error));
   }
   
 }
