@@ -19,6 +19,13 @@ export class ActoresService {
     return this.http.post(this.apiURL, formData);
   }
 
+  public editar(id:number, actor: actorCreacionDTO) {
+    const formData = this.construirFormData(actor);
+
+    console.log(actor);
+    return this.http.put(`${this.apiURL}/${id}`,formData)
+  }
+
   private construirFormData(actor: actorCreacionDTO): FormData {
     const formData = new FormData();
     formData.append('nombre', actor.nombre);
@@ -30,8 +37,8 @@ export class ActoresService {
     }
     if (actor.foto){
       formData.append('foto', actor.foto);
-    } 
-
+    }
+    console.log(formData);
     return formData;
   }
 
@@ -51,10 +58,7 @@ export class ActoresService {
     return this.http.get<actorDTO>(`${this.apiURL}/${id}`);
   }
 
-  public editar( id:number ,actor: actorCreacionDTO) {
-    const formData = this.construirFormData(actor);
-    return this.http.put(`${this.apiURL}/${id}`, formData);
-  }
+  
 
   public obtenerPorNombre(nombre:string):Observable<actorPeliculaDTO[]>{
 

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PeliculaDTO } from '../pelicula';
 import { PeliculasService } from '../peliculas.service';
 
@@ -9,7 +10,7 @@ import { PeliculasService } from '../peliculas.service';
 })
 export class ListadoPeliculasComponent implements OnInit {
 
-  constructor(private peliculasService: PeliculasService) { }
+  constructor(private peliculasService: PeliculasService,private router:Router) { }
 
   @Input()
   peliculas: PeliculaDTO[];
@@ -23,7 +24,7 @@ export class ListadoPeliculasComponent implements OnInit {
 
   borrar(peliculaId: number): void {
     this.peliculasService.borrar(peliculaId)
-    .subscribe(() => this.borrado.emit());
+    .subscribe(() => {this.borrado.emit(); this.router.navigate(["/peliculas/buscar"]) ;});
   }
 
 }

@@ -7,8 +7,6 @@ import { ListadoGenericoComponent } from './utilidades/listado-generico/listado-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { MenuComponent } from './menu/menu.component';
-import{MatIconModule} from '@angular/material/icon';
-import{MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 import { RatingComponent } from './utilidades/rating/rating.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -46,6 +44,7 @@ import { RegistroComponent } from './seguridad/registro/registro.component';
 import { FormularioAutenticacionComponent } from './seguridad/formulario-autenticacion/formulario-autenticacion.component';
 import { SeguridadInterceptorService } from './seguridad/seguridad-interceptor.service';
 import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usuarios.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,15 +88,14 @@ import { IndiceUsuariosComponent } from './seguridad/indice-usuarios/indice-usua
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatIconModule,
-    MatButtonModule,
+    
     AppRoutingModule,
     ReactiveFormsModule,
     MarkdownModule.forRoot(),
     LeafletModule,
     FormsModule,
     HttpClientModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
     
     
     

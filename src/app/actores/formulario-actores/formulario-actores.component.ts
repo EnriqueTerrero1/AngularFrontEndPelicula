@@ -5,57 +5,55 @@ import { actorCreacionDTO, actorDTO } from '../actor';
 @Component({
   selector: 'app-formulario-actores',
   templateUrl: './formulario-actores.component.html',
-  styleUrls: ['./formulario-actores.component.css']
+  styleUrls: ['./formulario-actores.component.css'],
 })
 export class FormularioActoresComponent implements OnInit {
+  constructor(private formBuilder: FormBuilder) {}
 
-cambioMarkdown(texto:string) {
-
-  this.form.get('biografia').setValue(texto);
-}
-  @Input()
-    errores:string[]=[];
-  constructor( private formBuilder:FormBuilder) { }
-
-  form : FormGroup
+  form: FormGroup;
 
   @Input()
-  modelo:actorDTO;
+  modelo: actorDTO;
+
+  @Input()
+  errores: string[] = [];
 
   @Output()
-  Onsubmit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
+  OnSubmit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
 
+  imagenCambiada = false;
 
-
-  imagenCambiada:boolean=false;
   ngOnInit(): void {
-
-    this.form=this.formBuilder.group({
-
-      nombre:['',{validators:[Validators.required]},],
-      fechaNacimiento:'',
-      foto:'',
-      biografia:''
-
+    this.form = this.formBuilder.group({
+      nombre: [
+        '',
+        {
+          validators: [Validators.required],
+        },
+      ],
+      fechaNacimiento: '',
+      foto: '',
+      biografia: ''
     });
-    if(this.modelo !== undefined){
-      this.form.patchValue(this.modelo);
+
+    if (this.modelo !== undefined){
+      this.form.patchValue(this.modelo)
     }
   }
 
-
   archivoSeleccionado(file){
-
-    this.imagenCambiada=true;
+    this.imagenCambiada = true;
     this.form.get('foto').setValue(file);
-
   }
- onSubmit(){
 
-  if(!this.imagenCambiada){
-    this.form.patchValue({'foto':null})
+  cambioMarkdown(texto: string){
+    this.form.get('biografia').setValue(texto);
   }
-  this.Onsubmit.emit(this.form.value);
- }
 
+  onSubmit(){
+    if (!this.imagenCambiada){
+      this.form.patchValue({'foto': null});
+    }
+    this.OnSubmit.emit(this.form.value);
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GenerosService } from 'src/app/generos/generos.service';
 import { parsearErroresAPI } from 'src/app/utilidades/utilidades';
 import { actorCreacionDTO, actorDTO } from '../actor';
 import { ActoresService } from '../actores.service';
@@ -12,26 +11,33 @@ import { ActoresService } from '../actores.service';
 })
 export class EditarActorComponent implements OnInit {
 
-  constructor(private router:Router,private actoresService:ActoresService,private activedRoute:ActivatedRoute) { }
 
-  errores:string[]=[];
-  modelo:actorDTO;
+  constructor(
+    private router: Router,
+    private actoresService: ActoresService,
+    private activatedRoute: ActivatedRoute
+  ) {}
+
+  modelo: actorDTO;
+  errores: string[] = [];
+
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe((params) => {
+      this.actoresService.obtenerPorId(params['id'])
+      .subscribe(genero => {
+        this.modelo = genero;
+      }, () => this.router.navigate(['/generos']))
+    });
+  }
 
-    this.activedRoute.params.subscribe(params =>{ 
-      //alert(params['id']);
-      this.actoresService.obtenerPorId(params['id']).subscribe(actor =>{ this.modelo=actor;},()=>this.router.navigate(['/generos']));
-      
-    })
-
+  guardarCambios(actor: actorCreacionDTO) {
    
-
-  }
-
-  guardarCambios(actor:actorCreacionDTO){
-    this.actoresService.editar(this.modelo.id,actor).subscribe(()=>{
+    this.actoresService.editar(this.modelo.id, actor)
+    .subscribe(() => {
       this.router.navigate(['/actores']);
-    },error=>this.errores=parsearErroresAPI(error))
-    
+    }, error => this.errores = parsearErroresAPI(error))
+
+    // this.actoresService.editar(this.modelo.id,actor).subscribe(()=>console.log(actor));
   }
+
 }
